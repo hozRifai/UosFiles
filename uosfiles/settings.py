@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-import os
+import os , dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -30,7 +30,6 @@ ALLOWED_HOSTS = ["https://uosfiles.herokuapp.com/" , ".herokuapp.com"]
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,8 +43,7 @@ INSTALLED_APPS = [
     'files',
     # 3rd party files
     'bootstrap4',
-
-
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -58,14 +56,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-
-ROOT_URLCONF = 'uosfiles.urls'
-
-ROOT_URLCONF = 'uosfiles.urls'
-
-DEFAULT_HOST  ="www"
-DEFAULT_REDIRECT_URL = "https://uosfiles.herokuapp.com"
-PARENT_HOST = "uosfiles.herokuapp.com"
 
 TEMPLATES = [
     {
@@ -86,6 +76,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'uosfiles.wsgi.application'
 
+ROOT_URLCONF = 'uosfiles.urls'
+
+DEFAULT_HOST  ="www"
+DEFAULT_REDIRECT_URL = "https://uosfiles.herokuapp.com"
+PARENT_HOST = "uosfiles.herokuapp.com"
+
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -96,7 +92,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
@@ -144,10 +139,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
 
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "frontend/static"),
-]
+#
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "frontend/static"),
+# ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "frontend/static_cdn")
 # when user upload  files will be found here
@@ -156,7 +151,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "frontend/documents")
 MEDIA_URL = '/media/'
 LOGIN_URL = "users:dashboard"
 # login re-direct
-LOGIN_REDIRECT_URL = 'users:dashboard'
+LOGIN_REDIRECT_URL = 'files:dashboard'
 # logout re-direct
 LOGOUT_REDIRECT_URL = 'home'
 
