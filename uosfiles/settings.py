@@ -154,3 +154,6 @@ ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window;
 REGISTRATION_AUTO_LOGIN = True  # Automatically log the user in.
 SITE_ID = 1
 django_heroku.settings(locals())
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
