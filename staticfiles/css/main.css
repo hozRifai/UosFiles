@@ -1,0 +1,19 @@
+/* start home */
+.header-picture{
+    height: 597px;
+    background-image: url("../img/1.jpg");
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-position: 50% 50%;
+}
+.navbar-brand{padding-left: 30px;}
+.navbar-expand-md .navbar-nav .nav-link{
+    text-emphasis-color :rgba(255, 255, 255, 1);
+}
+.navbar-expand-md .navbar-nav .nav-link {
+    padding-right: 1.1rem;
+    padding-left: 1.4rem;
+}
+/* end home*/
