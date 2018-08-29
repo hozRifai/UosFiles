@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ["https://uosfiles.herokuapp.com/" , ".herokuapp.com"]
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'files',
     # 3rd party files
     'bootstrap4',
-    'rest_framework',
+
 
 ]
 
