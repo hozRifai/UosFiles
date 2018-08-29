@@ -5,7 +5,7 @@ $(document).ready(function(){
 });
 
 $.ajax({
-	url: "http://127.0.0.1:8000/media/documents/",
+	url: "https://uosfiles.herokuapp.com/media/documents/",
 	success: function(data){
 		$(data).find("a:contains(.jpg)").each(function(){
 		// will loop through 

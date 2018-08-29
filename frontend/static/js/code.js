@@ -5,7 +5,7 @@ $(document).ready(function(){
 });
 
 $.ajax({
-  url: "http://127.0.0.1:8000/files/dashboard/",
+  url: "https://uosfiles.herokuapp.com/files/dashboard/",
 	success: function(data){
     alert("i am here");
     $(data).find("a:contains(.jpg)").each(function(){
