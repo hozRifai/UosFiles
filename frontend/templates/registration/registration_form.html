@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bulma_tags %}
+
+
+{% block content %}
+  <div class="column is-4 ">
+    <div class="field">
+<h1>Register for free!</h1>
+<form method="post" action=".">
+  {% csrf_token %}
+  {{ form|bulma }}
+          <div class="field">
+            <div class="column">
+              <button type="submit" class="button is-primary" value="{% trans 'Join' %}">Join</button>
+            </div>
+         </div>
+         <input type="hidden" name="next" value="{{ next }}"/>
+</form>
+</div>
+</div>
+
+<hr/>
+  <div class="column is-4 ">
+    <div class="field">
+<p>Need to <a href="{% url 'auth_login' %}">Login</a>?</p>
+    </div>
+ </div>
+
+
+{% endblock %}

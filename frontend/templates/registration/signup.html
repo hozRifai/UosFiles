@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load  i18n bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% block content %}
+{{title}}
+<div class="container ">
+    <form class="form" method="post" >
+    {% csrf_token %}
+     <div class="row">
+         <div class="col-sm-4">
+            <small>{% bootstrap_form form %}</small>
+         </div>
+     </div>
+         {% buttons %}
+    <button type="submit" class="btn btn-success" >Submit</button>
+    <input type="hidden" name="next" value="{{ next }}"/>
+         {% endbuttons %}
+    </form>
+  </div>
+
+{% endblock %}
+
+

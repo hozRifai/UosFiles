@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% load bootstrap4 %} {% load i18n %} {% bootstrap_css %} {% bootstrap_javascript jquery='full'
+%} {% bootstrap_messages %} {% block content %} {% if not user.is_authenticated %}
+<div class="container ">
+    <form class="form" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-sm-4">
+                {% bootstrap_form form %}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <p> You have no account yet ? <a href="/users/signup"  > Sign Up </a> </p>
+    </form>
+</div>
+{% else %}
+
+<div class="container ">
+    <h2>You are already in ! </h2>
+    <h2>Redirected</h2>
+    <script>
+        function redirect() {
+            window.location.href = "http://127.0.0.1:8000/files/dashboard/";
+        }
+        setTimeout(redirect, 2000); //2000 is equivalent to 2 seconds
+    </script>
+</div>
+
+
+{% endif%} {% endblock %}

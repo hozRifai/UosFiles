@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% load bootstrap4 %} {% load i18n %} {% bootstrap_css %} {% bootstrap_javascript jquery='full'
+%} {% bootstrap_messages %} {% block content %}
+
+    {% if user.is_authenticated %}
+<div class="container ">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-sm-8 ">
+                <small>{% bootstrap_form form %}</small>
+            </div>
+        </div>
+        {% buttons %}
+        <button type="submit" class="btn btn-success">Upload Files</button>
+        {% endbuttons %}
+    </form>
+</div>
+        {% else %}
+        <div class="container">
+            <div class="row">
+               <h3>It seems that you are not a member yet! please sign in in order to upload files</h3>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
