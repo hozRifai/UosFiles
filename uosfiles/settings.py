@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +24,7 @@ SECRET_KEY = '%#%s3dwq$e=o14-8d06qsunh())s7drfpqi8fq6)&!ln4)*hy_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://uosfiles.herokuapp.com/"]
+ALLOWED_HOSTS = ["https://uosfiles.herokuapp.com/" , ".herokuapp.com"]
 
 
 # Application definition
@@ -59,6 +58,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'uosfiles.urls'
 
+ROOT_URLCONF = 'uosfiles.urls'
+
+DEFAULT_HOST  ="www"
+DEFAULT_REDIRECT_URL = "https://uosfiles.herokuapp.com"
+PARENT_HOST = "uosfiles.herokuapp.com"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -88,7 +93,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -153,7 +160,3 @@ LOGOUT_REDIRECT_URL = 'home'
 ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window;
 REGISTRATION_AUTO_LOGIN = True  # Automatically log the user in.
 SITE_ID = 1
-django_heroku.settings(locals())
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)

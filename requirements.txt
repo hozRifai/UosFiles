@@ -5,6 +5,7 @@ Django==2.0
 django-annoying==0.10.4
 django-bootstrap4==0.0.6
 django-heroku==0.3.1
+django-hosts==3.0
 django-multiforloop==0.2.0
 django-registration==2.4.1
 djangorestframework==3.8.2
