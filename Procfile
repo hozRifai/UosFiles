@@ -1,2 +1,2 @@
-web: gunicorn omar.wsgi --log-file -
+web: gunicorn uosfiles.wsgi --log-file -
 heroku ps:scale web=1
