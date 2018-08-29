@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'uosfiles.urls'
@@ -160,3 +161,4 @@ LOGOUT_REDIRECT_URL = 'home'
 ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window;
 REGISTRATION_AUTO_LOGIN = True  # Automatically log the user in.
 SITE_ID = 1
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
