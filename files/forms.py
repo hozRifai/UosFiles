@@ -4,7 +4,7 @@ from .models import Document , CoursesNames
 class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ('title' ,  'description', 'document','course_name',  )
+        fields = ('course_name','title' ,  'description', 'document',  )
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
