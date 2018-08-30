@@ -7,7 +7,7 @@ from .models import Document, CoursesNames
 from django.http import HttpResponseRedirect, StreamingHttpResponse, Http404, HttpResponse
 from django.urls import reverse
 from django.conf import settings
-
+from itertools import chain
 
 def model_form_upload(request):
     """ a simple form to upload the files """
@@ -32,32 +32,23 @@ def showDocuments(request, *args, **kwargs):
     context = {
         "crs_names": crs_names,
         "files": [],
+        "not_found" : "",
     }
-    """ a way to download my files by accessing the files through the system """
     if request.POST:
-        file_name = request.POST["course"]
-        context["filename"] = file_name
 
+        file_name = request.POST["course"]
         not_found = "There is no files for {0} course yet!".format(file_name)
         documents = Document.objects.all().filter(course_name__courses__iexact=file_name)
         context["documents"] = documents
-        print(documents)
+        context["filename"] = file_name
+
+        documentObjectList = Document.objects.all().values_list("document").filter(course_name__courses__iexact=file_name)
         queryset = CoursesNames.objects.filter(courses__exact=file_name).exists()
 
-
-
         if queryset:
-            # in case we have't found the directory of the file
-            error_to_catch = getattr(
-                __builtins__, 'FileNotFoundError', IOError)
-            try:
-                directory = settings.MEDIA_ROOT+"/documents/"+file_name+"/"
-                contents = os.listdir(directory)
-            except error_to_catch:
-                context["not_found"] = not_found
-                return render(request, 'dashboard.html', context)
-            # append the files under the course directory to the files list
-            for item in contents:
-                if os.path.isfile(os.path.join(directory, item)):
-                    context["files"].append(item)
+            while len(context["files"]) > 0: context["files"].pop()
+            for i in documentObjectList:
+                context["files"] = i
+                print(context["files"])
+            if len(context["documents"]) == 0: context["not_found"] = not_found
     return render(request, 'dashboard.html', context)

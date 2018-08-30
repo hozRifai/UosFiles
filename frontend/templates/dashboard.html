@@ -23,7 +23,7 @@
   </div>
 </div> <!-- enf of container div-->
 
-{% if files %}
+{% if documents %}
 
         <div class="container">
           <div class="row">
@@ -37,7 +37,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{document.title}}</h5>
                   <p class="card-text">{{document.description}}</p>
-                  <a href="https://uosfiles.herokuapp.com/media/documents/{{filename}}/{{file}}" class="btn btn-success" download>Download</a>
+                  <a href="127.0.0.1:8000/media/documents/{{filename}}/{{file}}" class="btn btn-success" download>Download</a>
                 </div>
               </div>
             </div>
@@ -48,12 +48,11 @@
 
 {% else %}
     {% if not_found %}
-    <div class="container">
-      <div class="alert alert-danger">
-          {{ not_found }}
-      </div>
-    </div>
+        <div class="container">
+          <div class="alert alert-danger">
+              {{ not_found }}
+          </div>
+        </div>
     {% endif %}
-
 {%endif%}
 {% endblock %}
