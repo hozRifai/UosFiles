@@ -2,11 +2,13 @@
 %} {% bootstrap_messages %} {% block content %}
 
 <div class="container">
-  <div class = "col-sm-10 col-sm-offset-8">
+  <div class = "col-sm-10  col-sm-offset-8">
     <form method="POST" action=".">
       {% csrf_token %}
       <div class="row">
-        <div class="col-sm-5 mt-4" style="width: 200px;">
+
+        <div class="col-sm-5 mt-4" style="width: 400px;">
+        <p> Please select a course : </p>
           <select id="crs" class="custom-select custom-select-sm" name="course">
             <option selected>Open this select menu</option>
             {% for obj in crs_names %}
@@ -17,7 +19,7 @@
       </div>
 
       {% buttons %}
-         <button type="submit" class="btn btn-success col-sm-2  mt-3">Search</button>
+         <button type="submit" class="btn btn-success col-sm-2 mt-3">Search</button>
       {% endbuttons %}
     </form>
   </div>
@@ -29,7 +31,7 @@
           <div class="row">
              {% for file in files%}
                  {% for document in documents %}
-            <div class="col-sm-4 mt-4">
+            <div class="col-sm-5 mt-4">
               <div class="card">
                 <div class="card-header ">
                   {{filename}}
@@ -37,7 +39,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{document.title}}</h5>
                   <p class="card-text">{{document.description}}</p>
-                  <a href="https://uosfiles.herokuapp.com/media/{{file}}/" class="btn btn-success" download >Download</a>
+                  <a href="http://127.0.0.1:8000/media/{{file}}/" class="btn btn-success" download >Download</a>
                 </div>
               </div>
             </div>

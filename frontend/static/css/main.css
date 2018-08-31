@@ -12,8 +12,13 @@
 .navbar-expand-md .navbar-nav .nav-link{
     text-emphasis-color :rgba(255, 255, 255, 1);
 }
-.navbar-expand-md .navbar-nav .nav-link {
+.navbar-expand-sm .navbar-nav .nav-link {
     padding-right: 1.1rem;
     padding-left: 1.4rem;
+}
+.scrollspy-example {
+  position: relative;
+  height: 250px;
+  overflow: auto;
 }
 /* end home*/

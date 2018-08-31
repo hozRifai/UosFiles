@@ -2,6 +2,7 @@ from django import forms
 from .models import Document , CoursesNames
 
 class DocumentForm(forms.ModelForm):
+
     class Meta:
         model = Document
         fields = ('course_name','title' ,  'description', 'document',  )
