@@ -31,7 +31,7 @@ urlpatterns = [
     path('courses/', TemplateView.as_view(template_name="courses.html"), name="courses"),
     path('files/',  include((files_urls , "files") , namespace="files" )),
     path('features/' , TemplateView.as_view(template_name="features.html") , name="features"),
-    path('about-me/' , TemplateView.as_view(template_name="about-me.html") , name="about-me"),
+    path('contact-us/' , TemplateView.as_view(template_name="contact-us.html") , name="about-me"),
 
 ]
 if settings.DEBUG:
