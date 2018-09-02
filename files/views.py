@@ -37,7 +37,7 @@ def showDocuments(request, *args, **kwargs):
 
         file_name = request.POST["course"]
         not_found = "There are no files for {0} yet!".format(file_name)
-        documents = Document.objects.all().filter(course_name__courses__iexact=file_name)
+        documents = Document.objects.all().filter(course_name__courses__iexact=file_name).order_by('course_name')
         context["documents"] = documents
         context["filename"] = file_name
         #list of document and not a query
