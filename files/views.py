@@ -1,13 +1,12 @@
 import os
 from django.utils import timezone
-from django.shortcuts import render, redirect, HttpResponse
-from django.views import generic
-from .forms import DocumentForm
-from .models import Document, CoursesNames
-from django.http import HttpResponseRedirect, StreamingHttpResponse, Http404, HttpResponse
+from django.core.mail import send_mail, BadHeaderError
+from django.shortcuts import render , redirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.conf import settings
-from itertools import chain
+from .models import Document, CoursesNames
+from .forms import DocumentForm  , ContactForm
+
 
 def model_form_upload(request):
     """ a simple form to upload the files """
@@ -52,3 +51,20 @@ def showDocuments(request, *args, **kwargs):
                 print(context["files"])
             if len(context["documents"]) == 0: context["not_found"] = not_found
     return render(request, 'dashboard.html', context)
+
+
+def contact(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, email, ["houzayfalistening@gmail.com"])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return HttpResponseRedirect('/')
+    return render(request, "contact-us.html", {'form': form})

@@ -1,14 +1,53 @@
 {% extends "base.html"%}
+{% load widget_tweaks %} {% load i18n %}
+{% load bootstrap4 %}
+{% bootstrap_css %} {% bootstrap_javascript jquery='full'%} {% bootstrap_messages %}
 {% block content %}
-<style>
-  h1 { font-size: 50px; }
-</style>
 
-    <div class="container" >
-        <h1>Under Construction!</h1>
-        <div>
-            <p>This Webpage is still under construction! </p>
-            <p>&mdash; The Team</p>
-        </div>
+<div class="container ">
+    <form method="post">
+  {% csrf_token %}
+
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
     </div>
+  {% endif %}
+
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      {{ field.label_tag }}
+
+      {% if form.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid" %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control" %}
+      {% endif %}
+
+      {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</form>
+</div>
+
 {% endblock %}
