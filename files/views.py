@@ -27,7 +27,7 @@ def model_form_upload(request):
 
 def showDocuments(request, *args, **kwargs):
     """ shows all the files of the requested course  """
-    crs_names = CoursesNames.objects.all()
+    crs_names = CoursesNames.objects.all().order_by('courses')
     context = {
         "crs_names": crs_names,
         "files": [],
@@ -37,7 +37,7 @@ def showDocuments(request, *args, **kwargs):
 
         file_name = request.POST["course"]
         not_found = "There are no files for {0} yet!".format(file_name)
-        documents = Document.objects.all().filter(course_name__courses__iexact=file_name).order_by('course_name')
+        documents = Document.objects.all().filter(course_name__courses__iexact=file_name)
         context["documents"] = documents
         context["filename"] = file_name
         #list of document and not a query
