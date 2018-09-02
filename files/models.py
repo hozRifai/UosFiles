@@ -4,17 +4,8 @@ from django.db import models
 
 
 class CoursesNames(models.Model):
-    DB = "data structure"
-    SF = "software enginering"
-    DS = "discrete structure "
-    WD = "web dev"
-    courseChoices = (
-        (DB, "data structure"),
-        (SF, "software enginering "),
-        (DS, "discrete structure"),
-        (WD, "web dev"),
-    )
-    courses = models.CharField(max_length=50, choices=courseChoices)
+    courses = models.CharField(max_length=50)
+    crn =     models.IntegerField(blank=True , null=True)
 
     def __str__(self):
         return self.courses
