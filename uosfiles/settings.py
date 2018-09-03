@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework',
     'widget_tweaks',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -135,13 +136,8 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
-STATIC_URL = '/static/'
+# https://docs.djangoproject.com/en/2.0/howto/static-files
 
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "frontend/static"),
-]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "frontend/static_cdn")
 # when user upload  files will be found here
@@ -157,6 +153,7 @@ LOGOUT_REDIRECT_URL = 'home'
 ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window;
 REGISTRATION_AUTO_LOGIN = True  # Automatically log the user in.
 SITE_ID = 1
+
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
@@ -164,3 +161,23 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'houzayfalistening@gmail.com'
 EMAIL_HOST_PASSWORD = 'paosidufygth'
+
+
+AWS_ACCESS_KEY_ID = 'AKIAJNSV3F6ZFOMIAHGA'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'uosfiles-bucket'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_LOCATION = 'static'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "frontend/static_cdn"),
+]
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+DEFAULT_FILE_STORAGE = 'uosfiles.storage_backends.MediaStorage'
