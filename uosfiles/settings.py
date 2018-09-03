@@ -139,7 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, "frontend/static_cdn")
+STATIC_ROOT = os.path.join(BASE_DIR, "frontend/static")
 # when user upload  files will be found here
 MEDIA_ROOT = os.path.join(BASE_DIR, "frontend/documents")
 # my media
@@ -162,6 +162,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'houzayfalistening@gmail.com'
 EMAIL_HOST_PASSWORD = 'paosidufygth'
 
+AWS_DEFAULT_ACL = None
 
 AWS_ACCESS_KEY_ID = 'AKIAJNSV3F6ZFOMIAHGA'
 AWS_SECRET_ACCESS_KEY = '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'

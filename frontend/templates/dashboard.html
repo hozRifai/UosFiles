@@ -39,7 +39,7 @@
                 <div class="card-body">
                   <h5 class="card-title">{{document.title}}</h5>
                   <p class="card-text">{{document.description}}</p>
-                  <a href="https://uosfiles.herokuapp.com/media/{{document.document}}/" class="btn btn-success" download >Download</a>
+                  <a id="aaa" href="https://s3-ap-southeast-1.amazonaws.com/uosfiles-bucket/media/{{document.document}}" class="btn btn-success" download >Download</a>
                 </div>
               </div>
             </div>
@@ -56,5 +56,12 @@
           </div>
         </div>
     {% endif %}
+    <script >
+        originalLink = document.getElementById("aaa").getAttribute("href");
+        document.getElementById("aaa").onclick = function() {
+            document.getElementById("abc").href=  originalLink.replace("%20" , "+")
+            return false;
+        };
+    </script>
 {%endif%}
 {% endblock %}
