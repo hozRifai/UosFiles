@@ -6,6 +6,7 @@ class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
         fields = ('course_name','title' ,  'description', 'document',  )
+        document = forms.CharField(widget=forms.TextInput(attrs={'class': "control-fileupload"}))
 
     def clean_title(self):
         title = self.cleaned_data.get('title')

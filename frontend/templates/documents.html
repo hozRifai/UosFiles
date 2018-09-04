@@ -1,17 +1,16 @@
-{% extends "base.html" %} {% load bootstrap4 %} {% load i18n %} {% bootstrap_css %} {% bootstrap_javascript jquery='full'
-%} {% bootstrap_messages %} {% block content %}
+{% extends "base.html" %}{% load widget_tweaks %} {% load bootstrap4 %} {% load i18n %} {% bootstrap_css %} {% bootstrap_javascript jquery='full'%} {% bootstrap_messages %} {% block content %}
 
 
 <div class="container ">
     <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
         <div class="row">
             <div class="col-sm-8 ">
+        {% csrf_token %}
                 <small>{% bootstrap_form form %}</small>
             </div>
         </div>
         {% buttons %}
-        <button type="submit" class="btn btn-success">Upload Files</button>
+        <button type="submit" class="btn btn-success">Submit</button>
         {% endbuttons %}
     </form>
 </div>

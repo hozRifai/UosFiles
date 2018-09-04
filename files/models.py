@@ -20,8 +20,7 @@ class Document(models.Model):
             courses=self.course_name, filename=course_name)
         return file_path
     title = models.CharField(max_length=100)
-    description = models.TextField(
-        help_text="A little description can be very helpful for others!")
+    description = models.TextField( help_text="A little description can not be harmful!")
     document = models.FileField(upload_to=content_file_name)
     uploaded_at = models.DateTimeField(auto_now_add=False)
 
