@@ -9,18 +9,17 @@
 
        <ul class="navbar-nav ml-auto ">
             <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/files/dashboard/">Courses</a></li>
-
-            <li class="nav-item"><a class="nav-link" href="/files/documents/">Upload Files</a></li>
-           <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">Log In</a></li>
-            <li class="nav-item"><a class="nav-link" href="/files/contact-us">Contact Us </a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'files:dashboard' %}">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'files:documents' %}">Upload Files</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'users:login' %}">Log In</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'files:contact' %}">Contact Us </a></li>
         </ul>
 
           {% else %}
 
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="/files/dashboard"><i class="fas fa-chalkboard-teacher fa-1x  fa-fw aria-hidden='true' "></i> Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="/files/documents/"><i class="fas fa-file fa-1x  fa-fw aria-hidden='true'"></i> Files</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'files:dashboard' %}"><i class="fas fa-chalkboard-teacher fa-1x  fa-fw aria-hidden='true' "></i> Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'files:documents' %}"><i class="fas fa-file fa-1x  fa-fw aria-hidden='true'"></i> Files</a></li>
 
             <div class="dropdown" >
                 <li class="btn btn-success dropdown-toggle" data-toggle="dropdown"> <i class="fas fa-graduation-cap fa-1x  fa-fw aria-hidden='true'"></i>{{ user.username }} </li>

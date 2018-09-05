@@ -128,7 +128,6 @@ REST_FRAMEWORK = {
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Dubai'  # 'UTC'
-
 USE_I18N = True
 #DATETIME_FORMAT = '%d-%m-%Y %H:%M'
 USE_L10N = True
@@ -138,12 +137,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, "frontend/static")
-# when user upload  files will be found here
-MEDIA_ROOT = os.path.join(BASE_DIR, "frontend/documents")
-# my media
-MEDIA_URL = '/media/'
 LOGIN_URL = "users:dashboard"
 # login re-direct
 LOGIN_REDIRECT_URL = 'files:dashboard'
@@ -154,31 +147,41 @@ ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window;
 REGISTRATION_AUTO_LOGIN = True  # Automatically log the user in.
 SITE_ID = 1
 
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'houzayfalistening@gmail.com'
-EMAIL_HOST_PASSWORD = 'paosidufygth'
 
-AWS_DEFAULT_ACL = None
+# AWS_DEFAULT_ACL = None
+#
+# AWS_ACCESS_KEY_ID = 'AKIAJNSV3F6ZFOMIAHGA'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'uosfiles-bucket'
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
 
-AWS_ACCESS_KEY_ID = 'AKIAJNSV3F6ZFOMIAHGA'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'uosfiles-bucket'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
 
-AWS_LOCATION = 'static'
+# This is necessary so that Nginx can handle requests for static files
+STATIC_ROOT = os.path.join(BASE_DIR, "allstaticfiles/")
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "frontend/static_cdn"),
+    os.path.join(BASE_DIR, "static")
 ]
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# when user upload  files will be found here
+MEDIA_ROOT = os.path.join(BASE_DIR, "frontend/documents")
+# my media
+MEDIA_URL = '/media/'
 
-DEFAULT_FILE_STORAGE = 'uosfiles.storage_backends.MediaStorage'
+
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# # STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+#
+# DEFAULT_FILE_STORAGE = 'uosfiles.storage_backends.MediaStorage'
+
