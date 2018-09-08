@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% load bootstrap4 %} {% load i18n %} {% bootstrap_css %} {% bootstrap_javascript jquery='full'
-%} {% bootstrap_messages %} {% block content %} {% if not user.is_authenticated %}
+{% extends "base.html" %} {% load bootstrap4 %} {% load i18n %} {% bootstrap_css %} {% bootstrap_javascript jquery='full'%}
+{% bootstrap_messages %} {% block content %} {% if not user.is_authenticated %}
 <div class="container my-4">
     <form class="form" method="post">
         {% csrf_token %}
@@ -9,7 +9,10 @@
             </div>
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
-        <p class="my-2"> You have no account yet ? <a href="/users/signup"  > Sign Up </a> </p>
+        <p class="my-2"> You have no account yet ?
+            <a href="{% url 'users:signup' %}" > Sign Up </a> ,
+            <a href="{% url 'users:password_reset' %} ">Lost password?</a>
+        </p>
     </form>
 </div>
 {% else %}
@@ -19,7 +22,7 @@
     <h2>Redirected</h2>
     <script>
         function redirect() {
-            window.location.href = "https://uosfiles.herokuapp.com/files/dashboard/";
+            window.location.href = "https://uosfiles.herokuapp.com/files/dashboard/ ";
         }
         setTimeout(redirect, 2000); //2000 is equivalent to 2 seconds
     </script>

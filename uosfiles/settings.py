@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%#%s3dwq$e=o14-8d06qsunh())s7drfpqi8fq6)&!ln4)*hy_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [".herokuapp.com","127.0.0.1"]
 
@@ -152,23 +152,25 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-
-# AWS_DEFAULT_ACL = None
+EMAIL_HOST_USER = 'uosfiles@gmail.com'
+EMAIL_HOST_PASSWORD = 'akhenhou1'
+AWS_DEFAULT_ACL = None
 #
-# AWS_ACCESS_KEY_ID = 'AKIAJNSV3F6ZFOMIAHGA'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'uosfiles-bucket'
+AWS_ACCESS_KEY_ID = 'AKIAJNSV3F6ZFOMIAHGA'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'uosfiles-bucket'
+AWS_S3_BUCKET_NAME_STATIC =  'uosfiles-bucket'
 # AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-# AWS_S3_OBJECT_PARAMETERS = {
-#     'CacheControl': 'max-age=86400',
-# }
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
 
 
 # This is necessary so that Nginx can handle requests for static files
 STATIC_ROOT = os.path.join(BASE_DIR, "allstaticfiles/")
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = "/static/"
+# STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
@@ -179,9 +181,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "frontend/documents")
 MEDIA_URL = '/media/'
 
 
-# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# # STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-#
-# DEFAULT_FILE_STORAGE = 'uosfiles.storage_backends.MediaStorage'
+STATIC_URL = "https://s3-ap-southeast-1.amazonaws.com/uosfiles-bucket/"
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
+DEFAULT_FILE_STORAGE = 'uosfiles.storage_backends.MediaStorage'

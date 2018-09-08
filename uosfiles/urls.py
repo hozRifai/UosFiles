@@ -28,9 +28,7 @@ urlpatterns = [
     path('api/files/' , include("files.api.urls")),
     path('' , TemplateView.as_view(template_name="home.html") , name="home"),
     path('users/' , include((users_urls , "users") , namespace="users" )),
-    path('courses/', TemplateView.as_view(template_name="courses.html"), name="courses"),
     path('files/',  include((files_urls , "files") , namespace="files" )),
-    path('features/' , TemplateView.as_view(template_name="features.html") , name="features"),
   #  path('contact-us/' , TemplateView.as_view(template_name="contact-us.html") , name="about-me"),
 
 ]

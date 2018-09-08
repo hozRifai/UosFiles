@@ -10,6 +10,7 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  background-position: center;
 }
 .navbar-brand {
   padding-left: 30px;
@@ -22,32 +23,31 @@ body {
   padding-left: 1.4rem;
 }
 
-/*.scrollspy-example {*/
-/*position: relative;*/
-/*height: 250px;*/
-/*overflow: auto;*/
-/*}*/
-/*.footer {*/
-
-/*position: fixed;*/
-
-/*height: 55px;*/
-
-/*bottom: 0;*/
-
-/*color:#fff;*/
-
-/*padding-top:20px;*/
-
-/*width: 100%;*/
-
-/*background: #00003E;*/
-
-/*background: -webkit-linear-gradient(to right, #31BDE6, #00003E);*/
-
-/*background: linear-gradient(to right, #31BDE6, #00003E);*/
-
-/*text-align:center;*/
-
-/*}*/
+.header-picture h1,
+h4 {
+  color: white;
+  text-align: center;
+}
+footer {
+  background-color: #eee;
+  padding: 25px;
+  font-size: 20px;
+}
+h6 {
+  padding-left: 10%;
+}
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 20em;
+  margin-right: 20em;
+  margin-top: 30px;
+  border-style: inset;
+  border-width: 1px;
+}
+.team {
+  font-size: 24px;
+  /*box-shadow: -2px 1px rgb(53, 175, 37);*/
+}
 /* end home*/

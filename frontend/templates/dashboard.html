@@ -2,13 +2,13 @@
 %} {% bootstrap_messages %} {% block content %}
 
 <div class="container">
-  <div class = "col-sm-10  col-sm-offset-8">
+  <div class="col-sm-10  col-sm-offset-8">
     <form method="POST" action=".">
       {% csrf_token %}
       <div class="row">
 
         <div class="col-sm-5 mt-4" style="width: 400px;">
-        <p> Please select a course : </p>
+          <p> Please select a course : </p>
           <select id="crs" class="custom-select custom-select-sm" name="course">
             <option selected>Open this select menu</option>
             {% for obj in crs_names %}
@@ -19,49 +19,49 @@
       </div>
 
       {% buttons %}
-         <button type="submit" class="btn btn-success col-sm-2 mt-3">Search</button>
+      <button type="submit" class="btn btn-success col-sm-2 mt-3">Search</button>
       {% endbuttons %}
     </form>
   </div>
-</div> <!-- enf of container div-->
+</div>
+<!-- enf of container div-->
 
 {% if documents %}
 
-        <div class="container">
-          <div class="row">
-             {% for file in files%}
-                 {% for document in documents %}
-            <div class="col-sm-5 mt-4">
-              <div class="card">
-                <div class="card-header ">
-                  {{filename}}
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{document.title}}</h5>
-                  <p class="card-text">{{document.description}}</p>
-                  <a id="aaa" href="https://s3-ap-southeast-1.amazonaws.com/uosfiles-bucket/media/{{document.document}}" class="btn btn-success" download >Download</a>
-                </div>
-              </div>
-            </div>
-                     {% endfor %}
-              {% endfor %}
-          </div>
+<div class="container">
+  <div class="row">
+    {% for file in files%} {% for document in documents %}
+    <div class="col-sm-5 mt-4">
+      <div class="card">
+        <div class="card-header ">
+          {{filename}}
         </div>
+        <div class="card-body">
+          <h5 class="card-title">{{document.title}}</h5>
+          <p class="card-text">{{document.description}}</p>
+          <a id="aaa" href="https://s3-ap-southeast-1.amazonaws.com/uosfiles-bucket/media/{{document.document}}" class="btn btn-success"
+            download>Download</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% endfor %}
+  </div>
+</div>
 
-{% else %}
-    {% if not_found %}
-        <div class="container">
-          <div class="alert alert-danger">
-              {{ not_found }}
-          </div>
-        </div>
-    {% endif %}
-    <script >
-        originalLink = document.getElementById("aaa").getAttribute("href");
-        document.getElementById("aaa").onclick = function() {
-            document.getElementById("abc").href=  originalLink.replace("%20" , "+")
-            return false;
-        };
-    </script>
-{%endif%}
-{% endblock %}
+{% else %} {% if not_found %}
+<div class="container">
+  <div class="alert alert-danger alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Not Found!</strong> {{ not_found }}
+  </div>
+</div>
+{% endif %}
+<script>
+  originalLink = document.getElementById("aaa").getAttribute("href");
+  document.getElementById("aaa").onclick = function () {
+    document.getElementById("abc").href = originalLink.replace("%20", "+")
+    return false;
+  };
+</script> {%endif%} {% endblock %}
