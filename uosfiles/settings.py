@@ -181,7 +181,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "frontend/documents")
 MEDIA_URL = '/media/'
 
 
-STATIC_URL = "https://s3-ap-southeast-1.amazonaws.com/uosfiles-bucket/"
+STATIC_URL = "https://s3-ap-southeast-1.amazonaws.com/uosfiles-bucket/static/"
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
