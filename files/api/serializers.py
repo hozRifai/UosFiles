@@ -5,7 +5,7 @@ class DocumentPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document 
         fields = [
-            "courses",
+            "course_name",
             "description", 
             "document",
             "uploaded_at"
